@@ -64,8 +64,13 @@ def _get_expected_contents(first_line, second_line, rest, expected_pragma):
 
 
 def fix_encoding_pragma(f, remove=False, expected_pragma=DEFAULT_PRAGMA):
+    first_line = b''
+    while not first_line.strip():
+        first_line = f.readline()
+        if not first_line:
+            break
     expected = _get_expected_contents(
-        f.readline(), f.readline(), f.read(), expected_pragma,
+        first_line, f.readline(), f.read(), expected_pragma,
     )
 
     # Special cases for empty files
