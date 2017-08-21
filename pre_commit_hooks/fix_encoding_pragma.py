@@ -66,6 +66,7 @@ def _get_expected_contents(first_line, second_line, rest, expected_pragma):
 def fix_encoding_pragma(f, remove=False, expected_pragma=DEFAULT_PRAGMA):
     first_line = b''
     while not first_line.strip():
+        print(first_line)
         first_line = f.readline()
     expected = _get_expected_contents(
         first_line, f.readline(), f.read(), expected_pragma,
